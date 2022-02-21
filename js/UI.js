@@ -62,4 +62,16 @@ class UI {
           });
           this.markers.addTo(this.mapa)
      }
+
+      // Obtiene las sugerencias de la REST API
+      obtenerSugerencias(busqueda) {
+          this.api.obtenerDatos()
+               .then(datos => {
+                    // Obtener los resultados
+                    const resultados = datos.respuestaJSON.results;
+
+                    // Enviar el JSON y la busqueda al Filtro
+                    this.filtrarSugerencias(resultados, busqueda);
+               })
+     }
 }
