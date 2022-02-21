@@ -74,4 +74,12 @@ class UI {
                     this.filtrarSugerencias(resultados, busqueda);
                })
      }
+
+     // Filtrar las sugerencias de busqueda
+      filtrarSugerencias(resultados, busqueda) {
+          const filtro = resultados.filter( filtro => filtro.calle.indexOf(busqueda) !== -1 );
+
+          // Mostrar pines del Filtro
+          this.mostrarPines(filtro);
+     }
 }
