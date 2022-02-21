@@ -36,4 +36,30 @@ class UI {
                          this.mostrarPines(resultado);
                     } )
      }
+     // Muestra los pines
+     mostrarPines(datos) {
+
+          this.markers.clearLayers();
+
+          // Recorrer establecimientos
+          datos.forEach(dato => {
+               // Destucturing
+               const {latitude, longitude, calle, regular, premium} = dato;
+
+               const opcionesPopUp = L.popup()
+               .setContent(`<p>Calle: ${calle}</p>
+                            <p></p><b>Regular:</b>$ ${regular}</p>
+                            <p> <b>Premium:</b>$ ${premium}</p>`);
+
+               // Agregar el Pin
+               const marker = new L.marker([
+                    parseFloat(latitude),
+                    parseFloat(longitude)
+               ] )
+               .bindPopup(opcionesPopUp)
+
+               this.markers.addLayer(marker);
+          });
+          this.markers.addTo(this.mapa)
+     }
 }
